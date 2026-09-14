@@ -38,6 +38,7 @@ Welcome to the official repository for **DryLeaf Technologies** — a modern, re
 - **Location**: Coimbatore, Tamil Nadu, India
 - **Email**: [dryleaftechnologies@gmail.com](mailto:dryleaftechnologies@gmail.com)
 - **Phone Numbers**: [+91 79044 52267](tel:7904452267) | [+91 94862 88948](tel:9486288948)
+- **Instagram**: [@dryleaf_technologies](https://www.instagram.com/dryleaf_technologies?stkn=ZWhzNjkzNGU2aHZu)
 
 ---
 

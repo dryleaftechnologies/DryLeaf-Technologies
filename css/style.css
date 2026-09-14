@@ -56,7 +56,9 @@
 /* --------------------------------------------------------------------------
    2. Base & Reset
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -80,7 +82,8 @@ body {
   flex-direction: column;
 }
 
-img, svg {
+img,
+svg {
   max-width: 100%;
   height: auto;
   display: block;
@@ -92,7 +95,9 @@ a {
   transition: color var(--transition-fast);
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
   outline: none;
@@ -119,7 +124,12 @@ ul {
 /* --------------------------------------------------------------------------
    3. Typography & Section Headers
    -------------------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--color-forest-green);
   font-weight: 700;
@@ -171,8 +181,17 @@ p {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.7; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
 }
 
 .section-header {
@@ -262,7 +281,10 @@ p {
 }
 
 /* Focus States for Accessibility */
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 3px;
 }
@@ -309,7 +331,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .brand-logo img {
-  height: 64px;
+  height: 100px;
   width: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
@@ -317,7 +339,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .header.scrolled .brand-logo img {
-  height: 54px;
+  height: 60px;
 }
 
 .brand-logo:hover img {
@@ -515,9 +537,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   height: 10px;
   border-radius: 50%;
 }
-.visual-dot:nth-child(1) { background-color: #E56B6F; }
-.visual-dot:nth-child(2) { background-color: #FFB703; }
-.visual-dot:nth-child(3) { background-color: var(--color-leaf-green); }
+
+.visual-dot:nth-child(1) {
+  background-color: #E56B6F;
+}
+
+.visual-dot:nth-child(2) {
+  background-color: #FFB703;
+}
+
+.visual-dot:nth-child(3) {
+  background-color: var(--color-leaf-green);
+}
 
 .visual-badge {
   font-size: 0.75rem;
@@ -571,8 +602,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @keyframes rotate-mesh {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Floating Tech Pills */
@@ -630,8 +666,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @keyframes float-pill {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-10px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1261,7 +1302,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--color-forest-green);
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 0.85rem 1rem;
   border: 1px solid rgba(99, 166, 74, 0.3);
@@ -1272,7 +1314,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: border-color var(--transition-fast);
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
   border-color: var(--color-dry-orange);
   background-color: var(--bg-card);
 }
@@ -1310,12 +1353,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
   .reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -1332,7 +1379,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   .hero-content {
     max-width: 100%;
     text-align: center;
@@ -1365,7 +1412,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .footer-brand {
     grid-column: 1 / -1;
   }
@@ -1410,7 +1457,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   }
 
   .header-actions .btn {
-    display: none; /* Accessible in drawer on mobile */
+    display: none;
+    /* Accessible in drawer on mobile */
   }
 
   .mobile-cta-item {
@@ -1487,7 +1535,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* Contact Hyperlink Interactions */
-a[href^="mailto:"], a[href^="tel:"] {
+a[href^="mailto:"],
+a[href^="tel:"],
+a[href*="instagram.com"] {
   transition: all var(--transition-fast);
 }
 
@@ -1498,5 +1548,11 @@ a[href^="mailto:"]:hover {
 
 a[href^="tel:"]:hover {
   color: var(--color-dry-orange) !important;
+  text-decoration: underline;
+}
+
+a[href*="instagram.com"]:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
   text-decoration: underline;
 }
