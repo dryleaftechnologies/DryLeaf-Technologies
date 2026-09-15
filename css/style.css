@@ -1,55 +1,63 @@
 /* ==========================================================================
    DryLeaf Technologies - Master Stylesheet
-   Theme: Light Nature-Tech Aesthetic
-   Color System: Very Light Green, White, Dry Leaf Orange, Forest Green
+   Theme: Premium Dark Nature-Tech Aesthetic
+   Color System: Deep Forest Dark, Glowing Leaf Green, Warm Dry Orange
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. CSS Custom Properties (Design Tokens)
    -------------------------------------------------------------------------- */
 :root {
-  /* Color Palette */
-  --bg-dominant: #F1F8F1;
-  --bg-soft: #E4F1E5;
-  --bg-card: #FFFFFF;
-  --bg-dark-accent: #164F3D;
+  /* Color Palette — Dark Mode */
+  --bg-dominant: #0A1A14;
+  --bg-soft: #0F2A1F;
+  --bg-card: rgba(18, 42, 32, 0.65);
+  --bg-card-solid: #122A20;
+  --bg-dark-accent: #071210;
 
-  --color-leaf-green: #63A64A;
-  --color-dry-orange: #D97924;
-  --color-dry-orange-hover: #C06416;
-  --color-dry-orange-light: rgba(217, 121, 36, 0.12);
-  --color-forest-green: #164F3D;
-  --color-forest-green-muted: rgba(22, 79, 61, 0.7);
+  --color-leaf-green: #5ECE5E;
+  --color-leaf-green-dim: rgba(94, 206, 94, 0.15);
+  --color-dry-orange: #E8873C;
+  --color-dry-orange-hover: #D4702A;
+  --color-dry-orange-light: rgba(232, 135, 60, 0.15);
+  --color-forest-green: #3DDC84;
+  --color-forest-green-muted: rgba(61, 220, 132, 0.6);
 
-  --text-dark: #17332B;
-  --text-muted: #5E716A;
+  --text-dark: #E8F0EC;
+  --text-muted: #8FA89B;
   --text-light: #FFFFFF;
 
-  --border-light: rgba(99, 166, 74, 0.18);
-  --border-focus: #D97924;
+  --border-light: rgba(94, 206, 94, 0.12);
+  --border-focus: #E8873C;
+
+  /* Gradient Accents */
+  --gradient-primary: linear-gradient(135deg, #3DDC84 0%, #5ECE5E 50%, #E8873C 100%);
+  --gradient-card: linear-gradient(145deg, rgba(18, 42, 32, 0.8) 0%, rgba(10, 26, 20, 0.9) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(94, 206, 94, 0.08) 0%, transparent 70%);
 
   /* Typography */
   --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
 
   /* Spacing System */
-  --section-padding-desktop: 5.5rem 2rem;
-  --section-padding-tablet: 4rem 1.5rem;
+  --section-padding-desktop: 6rem 2rem;
+  --section-padding-tablet: 4.5rem 1.5rem;
   --section-padding-mobile: 3rem 1rem;
   --container-max-width: 1240px;
 
   /* Shadows */
-  --shadow-sm: 0 4px 12px rgba(23, 51, 43, 0.04);
-  --shadow-md: 0 8px 24px rgba(23, 51, 43, 0.08);
-  --shadow-lg: 0 16px 40px rgba(23, 51, 43, 0.12);
-  --shadow-orange: 0 8px 24px rgba(217, 121, 36, 0.25);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-orange: 0 8px 30px rgba(232, 135, 60, 0.3);
+  --shadow-green-glow: 0 0 30px rgba(94, 206, 94, 0.1);
 
   /* Transitions & Border Radius */
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
   --radius-full: 9999px;
 }
 
@@ -97,7 +105,8 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
   outline: none;
@@ -131,19 +140,20 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  color: var(--color-forest-green);
+  color: var(--text-light);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5vw, 3.8rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  letter-spacing: -0.03em;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -159,16 +169,17 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background-color: var(--bg-soft);
-  color: var(--color-forest-green);
-  border: 1px solid var(--border-light);
+  padding: 0.45rem 1.1rem;
+  background: var(--color-leaf-green-dim);
+  color: var(--color-leaf-green);
+  border: 1px solid rgba(94, 206, 94, 0.2);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
 }
 
 .badge-dot {
@@ -181,35 +192,37 @@ p {
 }
 
 @keyframes pulse-dot {
-
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
-
   50% {
-    transform: scale(1.4);
-    opacity: 0.7;
+    transform: scale(1.5);
+    opacity: 0.6;
   }
 }
 
 .section-header {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 3.5rem auto;
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
 }
 
 .section-header h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
 .section-header p {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
 }
 
 .text-highlight {
-  color: var(--color-dry-orange);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: relative;
   display: inline-block;
 }
@@ -222,7 +235,7 @@ p {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0.85rem 1.75rem;
+  padding: 0.9rem 1.9rem;
   border-radius: var(--radius-full);
   font-weight: 600;
   font-size: 0.95rem;
@@ -230,32 +243,32 @@ p {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary {
-  background-color: var(--color-dry-orange);
+  background: linear-gradient(135deg, #E8873C 0%, #D4702A 100%);
   color: var(--text-light);
   box-shadow: var(--shadow-orange);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-dry-orange-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(217, 121, 36, 0.35);
+  background: linear-gradient(135deg, #F09A52 0%, #E8873C 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(232, 135, 60, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--bg-card);
-  color: var(--color-forest-green);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-soft);
-  color: var(--color-forest-green);
-  border-color: var(--color-leaf-green);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
 }
 
 .btn-outline {
@@ -265,9 +278,10 @@ p {
 }
 
 .btn-outline:hover {
-  background-color: var(--color-dry-orange);
+  background: var(--color-dry-orange);
   color: var(--text-light);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-orange);
 }
 
 .btn .btn-icon {
@@ -277,14 +291,15 @@ p {
 }
 
 .btn:hover .btn-icon {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* Focus States for Accessibility */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 3px;
 }
@@ -298,17 +313,17 @@ textarea:focus-visible {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(241, 248, 241, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(99, 166, 74, 0.12);
+  background: rgba(10, 26, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(94, 206, 94, 0.08);
   transition: all var(--transition-smooth);
 }
 
 .header.scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-sm);
-  border-bottom-color: rgba(99, 166, 74, 0.2);
+  background: rgba(10, 26, 20, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(94, 206, 94, 0.15);
 }
 
 .navbar {
@@ -334,8 +349,8 @@ textarea:focus-visible {
   height: 100px;
   width: auto;
   object-fit: contain;
-  mix-blend-mode: multiply;
   transition: all var(--transition-smooth);
+  filter: brightness(1.1);
 }
 
 .header.scrolled .brand-logo img {
@@ -349,15 +364,17 @@ textarea:focus-visible {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2.25rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--text-muted);
   position: relative;
   padding: 0.5rem 0;
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
 }
 
 .nav-link::after {
@@ -366,14 +383,14 @@ textarea:focus-visible {
   bottom: 0;
   left: 0;
   width: 0%;
-  height: 2.5px;
-  background-color: var(--color-dry-orange);
+  height: 2px;
+  background: var(--gradient-primary);
   border-radius: var(--radius-full);
   transition: width var(--transition-smooth);
 }
 
 .nav-link:hover {
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .nav-link:hover::after,
@@ -382,7 +399,7 @@ textarea:focus-visible {
 }
 
 .nav-link.active {
-  color: var(--color-forest-green);
+  color: var(--text-light);
   font-weight: 700;
 }
 
@@ -409,7 +426,7 @@ textarea:focus-visible {
 .hamburger-line {
   width: 100%;
   height: 2.5px;
-  background-color: var(--color-forest-green);
+  background-color: var(--text-light);
   border-radius: 4px;
   transition: all var(--transition-smooth);
 }
@@ -433,8 +450,8 @@ textarea:focus-visible {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(22, 79, 61, 0.4);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
   z-index: 998;
   opacity: 0;
   visibility: hidden;
@@ -450,31 +467,55 @@ textarea:focus-visible {
    6. Hero Section
    -------------------------------------------------------------------------- */
 .hero-section {
-  padding: 4rem 0 5rem 0;
+  padding: 5rem 0 6rem 0;
   position: relative;
   overflow: hidden;
+}
+
+/* Background ambient glow */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(94, 206, 94, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232, 135, 60, 0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 3.5rem;
+  gap: 4rem;
   align-items: center;
 }
 
 .hero-content {
-  max-width: 620px;
+  max-width: 640px;
 }
 
 .hero-title {
-  margin-bottom: 1.25rem;
-  color: var(--color-forest-green);
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
 }
 
 .hero-description {
-  font-size: 1.15rem;
-  margin-bottom: 2.25rem;
-  line-height: 1.65;
+  font-size: 1.18rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  color: var(--text-muted);
 }
 
 .hero-cta-group {
@@ -496,26 +537,27 @@ textarea:focus-visible {
   width: 100%;
   aspect-ratio: 4/3;
   max-width: 500px;
-  background: linear-gradient(135deg, #FFFFFF 0%, #E4F1E5 100%);
-  border: 1px solid rgba(99, 166, 74, 0.25);
+  background: var(--gradient-card);
+  border: 1px solid rgba(94, 206, 94, 0.15);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-green-glow);
   position: relative;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
-/* Subtle Leaf & Tech Lines SVG Background inside Card */
+/* Subtle background pattern inside Card */
 .hero-visual-bg-pattern {
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.15;
+  opacity: 0.1;
   pointer-events: none;
 }
 
@@ -551,14 +593,15 @@ textarea:focus-visible {
 }
 
 .visual-badge {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--color-forest-green);
+  letter-spacing: 0.06em;
+  color: var(--color-leaf-green);
   text-transform: uppercase;
-  background: rgba(99, 166, 74, 0.15);
-  padding: 0.25rem 0.75rem;
+  background: var(--color-leaf-green-dim);
+  padding: 0.3rem 0.85rem;
   border-radius: var(--radius-full);
+  border: 1px solid rgba(94, 206, 94, 0.15);
 }
 
 .hero-visual-center {
@@ -581,7 +624,7 @@ textarea:focus-visible {
 .mesh-circle-outer {
   position: absolute;
   inset: 0;
-  border: 2px dashed var(--color-leaf-green);
+  border: 2px dashed rgba(94, 206, 94, 0.3);
   border-radius: 50%;
   animation: rotate-mesh 20s linear infinite;
 }
@@ -599,13 +642,13 @@ textarea:focus-visible {
   width: 48px;
   height: 48px;
   color: var(--color-dry-orange);
+  filter: drop-shadow(0 0 12px rgba(232, 135, 60, 0.3));
 }
 
 @keyframes rotate-mesh {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -614,8 +657,8 @@ textarea:focus-visible {
 /* Floating Tech Pills */
 .floating-pill {
   position: absolute;
-  background: var(--bg-card);
-  border: 1px solid rgba(99, 166, 74, 0.2);
+  background: rgba(18, 42, 32, 0.85);
+  border: 1px solid rgba(94, 206, 94, 0.15);
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -624,6 +667,7 @@ textarea:focus-visible {
   gap: 0.75rem;
   z-index: 10;
   animation: float-pill 4s ease-in-out infinite alternate;
+  backdrop-filter: blur(12px);
 }
 
 .floating-pill-1 {
@@ -642,7 +686,7 @@ textarea:focus-visible {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
-  background-color: var(--bg-soft);
+  background: var(--color-dry-orange-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -657,7 +701,7 @@ textarea:focus-visible {
 .pill-title {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .pill-sub {
@@ -669,9 +713,8 @@ textarea:focus-visible {
   0% {
     transform: translateY(0px);
   }
-
   100% {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
   }
 }
 
@@ -679,7 +722,7 @@ textarea:focus-visible {
    7. Highlights Section
    -------------------------------------------------------------------------- */
 .highlights-section {
-  padding: 2.5rem 0 4rem 0;
+  padding: 2.5rem 0 4.5rem 0;
 }
 
 .highlights-grid {
@@ -689,50 +732,71 @@ textarea:focus-visible {
 }
 
 .highlight-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 1.75rem 1.5rem;
+  padding: 2rem 1.5rem;
   transition: all var(--transition-smooth);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top gradient accent */
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-leaf-green);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  border-color: rgba(94, 206, 94, 0.3);
+  box-shadow: var(--shadow-md), var(--shadow-green-glow);
+}
+
+.highlight-card:hover::before {
+  opacity: 1;
 }
 
 .highlight-icon {
-  width: 44px;
-  height: 44px;
-  background-color: var(--bg-soft);
+  width: 48px;
+  height: 48px;
+  background: var(--color-leaf-green-dim);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-dry-orange);
-  transition: transform var(--transition-fast);
+  color: var(--color-leaf-green);
+  transition: all var(--transition-smooth);
 }
 
 .highlight-card:hover .highlight-icon {
-  background-color: var(--color-dry-orange);
+  background: linear-gradient(135deg, #E8873C 0%, #D4702A 100%);
   color: var(--text-light);
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(232, 135, 60, 0.3);
 }
 
 .highlight-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .highlight-desc {
   font-size: 0.925rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* --------------------------------------------------------------------------
@@ -740,7 +804,20 @@ textarea:focus-visible {
    -------------------------------------------------------------------------- */
 .services-section {
   padding: var(--section-padding-desktop);
-  background-color: var(--bg-dominant);
+  background: var(--bg-dominant);
+  position: relative;
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(94, 206, 94, 0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .services-grid {
@@ -750,10 +827,10 @@ textarea:focus-visible {
 }
 
 .service-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 2.25rem 2rem;
+  padding: 2.5rem 2rem;
   position: relative;
   transition: all var(--transition-smooth);
   display: flex;
@@ -761,6 +838,7 @@ textarea:focus-visible {
   justify-content: space-between;
   overflow: hidden;
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 /* Top Accent Line on Hover */
@@ -771,7 +849,7 @@ textarea:focus-visible {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: var(--color-dry-orange);
+  background: var(--gradient-primary);
   opacity: 0;
   transform: scaleX(0);
   transform-origin: left;
@@ -779,9 +857,9 @@ textarea:focus-visible {
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(99, 166, 74, 0.4);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md), var(--shadow-green-glow);
+  border-color: rgba(94, 206, 94, 0.25);
 }
 
 .service-card:hover::before {
@@ -794,33 +872,34 @@ textarea:focus-visible {
 }
 
 .service-icon-box {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-radius: var(--radius-md);
-  background-color: var(--bg-soft);
+  background: var(--color-leaf-green-dim);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-leaf-green);
   margin-bottom: 1.5rem;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-smooth);
 }
 
 .service-card:hover .service-icon-box {
-  background-color: var(--color-dry-orange-light);
+  background: var(--color-dry-orange-light);
   color: var(--color-dry-orange);
+  transform: scale(1.05);
 }
 
 .service-card-title {
   font-size: 1.3rem;
   margin-bottom: 0.75rem;
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .service-card-desc {
   font-size: 0.975rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .service-card-action {
@@ -831,6 +910,11 @@ textarea:focus-visible {
   font-weight: 700;
   color: var(--color-dry-orange);
   margin-top: 1.25rem;
+  transition: color var(--transition-fast);
+}
+
+.service-card:hover .service-card-action {
+  color: #F09A52;
 }
 
 .service-card-action svg {
@@ -840,7 +924,7 @@ textarea:focus-visible {
 }
 
 .service-card:hover .service-card-action svg {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 .services-cta-wrapper {
@@ -853,7 +937,7 @@ textarea:focus-visible {
    -------------------------------------------------------------------------- */
 .why-section {
   padding: var(--section-padding-desktop);
-  background-color: var(--bg-soft);
+  background: var(--bg-soft);
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   position: relative;
@@ -866,17 +950,19 @@ textarea:focus-visible {
 }
 
 .why-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 2rem 1.75rem;
+  padding: 2.25rem 1.75rem;
   position: relative;
   transition: all var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .why-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
+  border-color: rgba(94, 206, 94, 0.25);
 }
 
 .why-number {
@@ -894,25 +980,40 @@ textarea:focus-visible {
 .why-card-title {
   font-size: 1.2rem;
   margin-bottom: 0.75rem;
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .why-card-desc {
   font-size: 0.95rem;
   color: var(--text-muted);
+  line-height: 1.6;
 }
 
 /* --------------------------------------------------------------------------
    10. About Us Page Components
    -------------------------------------------------------------------------- */
 .about-hero-section {
-  padding: 4.5rem 0 3.5rem 0;
+  padding: 5rem 0 4rem 0;
   text-align: center;
+  position: relative;
+}
+
+.about-hero-section::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(94, 206, 94, 0.05) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .about-hero-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
 }
 
 .mission-vision-grid {
@@ -931,18 +1032,20 @@ textarea:focus-visible {
   position: relative;
   overflow: hidden;
   transition: all var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .mv-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-leaf-green);
+  box-shadow: var(--shadow-md), var(--shadow-green-glow);
+  border-color: rgba(94, 206, 94, 0.25);
+  transform: translateY(-4px);
 }
 
 .mv-card-icon {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-sm);
-  background-color: var(--color-dry-orange-light);
+  background: var(--color-dry-orange-light);
   color: var(--color-dry-orange);
   display: flex;
   align-items: center;
@@ -952,7 +1055,11 @@ textarea:focus-visible {
 
 .mv-card h3 {
   margin-bottom: 1rem;
-  color: var(--color-forest-green);
+  color: var(--text-light);
+}
+
+.mv-card p {
+  line-height: 1.7;
 }
 
 /* Core Values Grid */
@@ -963,48 +1070,57 @@ textarea:focus-visible {
 }
 
 .value-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 2rem 1.5rem;
   text-align: center;
   transition: all var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .value-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-leaf-green);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  border-color: rgba(94, 206, 94, 0.25);
+  box-shadow: var(--shadow-md), var(--shadow-green-glow);
 }
 
 .value-icon {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   margin: 0 auto 1.25rem auto;
   border-radius: 50%;
-  background-color: var(--bg-soft);
-  color: var(--color-forest-green);
+  background: var(--color-leaf-green-dim);
+  color: var(--color-leaf-green);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-smooth);
 }
 
 .value-card:hover .value-icon {
-  background-color: var(--color-dry-orange);
+  background: linear-gradient(135deg, #E8873C 0%, #D4702A 100%);
   color: var(--text-light);
+  box-shadow: 0 4px 20px rgba(232, 135, 60, 0.3);
+  transform: scale(1.08);
 }
 
 .value-title {
   font-size: 1.15rem;
   margin-bottom: 0.5rem;
-  color: var(--color-forest-green);
+  color: var(--text-light);
+}
+
+.value-desc {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  line-height: 1.55;
 }
 
 /* Tech Stack Showcase */
 .tech-showcase-section {
   padding: var(--section-padding-desktop);
-  background-color: var(--bg-soft);
+  background: var(--bg-soft);
   border-radius: var(--radius-lg);
   margin: 4rem 0;
   text-align: center;
@@ -1018,7 +1134,7 @@ textarea:focus-visible {
 }
 
 .tech-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.25rem;
@@ -1027,10 +1143,11 @@ textarea:focus-visible {
   align-items: center;
   gap: 0.85rem;
   transition: all var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .tech-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
   border-color: var(--color-dry-orange);
 }
@@ -1038,12 +1155,12 @@ textarea:focus-visible {
 .tech-icon {
   width: 48px;
   height: 48px;
-  color: var(--color-forest-green);
+  color: var(--color-leaf-green);
 }
 
 .tech-name {
   font-weight: 700;
-  color: var(--color-forest-green);
+  color: var(--text-light);
   font-size: 1.05rem;
 }
 
@@ -1060,7 +1177,7 @@ textarea:focus-visible {
 }
 
 .cta-box {
-  background: linear-gradient(135deg, var(--color-forest-green) 0%, #0F3A2C 100%);
+  background: linear-gradient(135deg, #0F3A2C 0%, #071210 50%, #1A3A28 100%);
   color: var(--text-light);
   border-radius: var(--radius-lg);
   padding: 4rem 3rem;
@@ -1068,6 +1185,7 @@ textarea:focus-visible {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(94, 206, 94, 0.1);
 }
 
 /* Decorative Organic Glow inside CTA */
@@ -1078,7 +1196,7 @@ textarea:focus-visible {
   right: -10%;
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(217, 121, 36, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 135, 60, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -1089,7 +1207,7 @@ textarea:focus-visible {
 }
 
 .cta-box p {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
   margin: 0 auto 2.25rem auto;
   font-size: 1.15rem;
@@ -1099,11 +1217,24 @@ textarea:focus-visible {
    12. Footer
    -------------------------------------------------------------------------- */
 .footer {
-  background-color: #0D2B21;
-  color: rgba(255, 255, 255, 0.75);
-  padding: 4rem 0 2rem 0;
+  background: #060F0B;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4.5rem 0 2rem 0;
   margin-top: auto;
-  border-top: 1px solid rgba(99, 166, 74, 0.2);
+  border-top: 1px solid rgba(94, 206, 94, 0.08);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(94, 206, 94, 0.03) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .footer-grid {
@@ -1114,10 +1245,11 @@ textarea:focus-visible {
 }
 
 .footer-brand p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.5);
   margin-top: 1rem;
   max-width: 320px;
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .footer-logo-text {
@@ -1131,7 +1263,10 @@ textarea:focus-visible {
 }
 
 .footer-logo-text span {
-  color: var(--color-dry-orange);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .footer-title {
@@ -1148,39 +1283,45 @@ textarea:focus-visible {
 }
 
 .footer-links a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.925rem;
+  transition: all var(--transition-fast);
 }
 
 .footer-links a:hover {
   color: var(--color-dry-orange);
+  transform: translateX(3px);
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .back-to-top {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
+  width: 42px;
+  height: 42px;
+  background: rgba(94, 206, 94, 0.1);
+  color: var(--color-leaf-green);
   border-radius: 50%;
   transition: all var(--transition-fast);
+  border: 1px solid rgba(94, 206, 94, 0.15);
 }
 
 .back-to-top:hover {
-  background-color: var(--color-dry-orange);
-  transform: translateY(-3px);
+  background: var(--color-dry-orange);
+  color: var(--text-light);
+  border-color: var(--color-dry-orange);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(232, 135, 60, 0.3);
 }
 
 /* --------------------------------------------------------------------------
@@ -1189,9 +1330,9 @@ textarea:focus-visible {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(13, 43, 33, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(6, 15, 11, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -1208,8 +1349,8 @@ textarea:focus-visible {
 }
 
 .modal-container {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: var(--bg-card-solid);
+  border: 1px solid rgba(94, 206, 94, 0.15);
   border-radius: var(--radius-lg);
   max-width: 620px;
   width: 100%;
@@ -1230,20 +1371,22 @@ textarea:focus-visible {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background-color: var(--bg-soft);
-  color: var(--color-forest-green);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .modal-close-btn:hover {
-  background-color: var(--color-dry-orange);
+  background: var(--color-dry-orange);
   color: var(--text-light);
+  border-color: var(--color-dry-orange);
 }
 
 .modal-header {
@@ -1275,10 +1418,10 @@ textarea:focus-visible {
 }
 
 .feature-check {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background-color: var(--bg-soft);
+  background: var(--color-leaf-green-dim);
   color: var(--color-leaf-green);
   display: flex;
   align-items: center;
@@ -1299,25 +1442,26 @@ textarea:focus-visible {
 .form-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-forest-green);
+  color: var(--text-light);
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid rgba(99, 166, 74, 0.3);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(94, 206, 94, 0.15);
   border-radius: var(--radius-sm);
-  background-color: var(--bg-dominant);
+  background: rgba(255, 255, 255, 0.04);
   font-size: 0.95rem;
   color: var(--text-dark);
-  transition: border-color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--color-dry-orange);
-  background-color: var(--bg-card);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(232, 135, 60, 0.1);
 }
 
 .form-textarea {
@@ -1327,9 +1471,9 @@ textarea:focus-visible {
 
 .form-success-msg {
   display: none;
-  background-color: var(--bg-soft);
-  border: 1px solid var(--color-leaf-green);
-  color: var(--color-forest-green);
+  background: var(--color-leaf-green-dim);
+  border: 1px solid rgba(94, 206, 94, 0.3);
+  color: var(--color-leaf-green);
   padding: 1rem;
   border-radius: var(--radius-sm);
   margin-top: 1rem;
@@ -1342,8 +1486,8 @@ textarea:focus-visible {
    -------------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(35px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.revealed {
@@ -1436,7 +1580,7 @@ textarea:focus-visible {
     width: 80%;
     max-width: 320px;
     height: 100vh;
-    background-color: var(--bg-card);
+    background: #0D2418;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -1445,6 +1589,7 @@ textarea:focus-visible {
     z-index: 999;
     box-shadow: var(--shadow-lg);
     transition: right var(--transition-smooth);
+    border-left: 1px solid rgba(94, 206, 94, 0.1);
   }
 
   .nav-menu.active {
@@ -1454,11 +1599,11 @@ textarea:focus-visible {
   .nav-link {
     font-size: 1.15rem;
     width: 100%;
+    color: var(--text-muted);
   }
 
   .header-actions .btn {
     display: none;
-    /* Accessible in drawer on mobile */
   }
 
   .mobile-cta-item {
@@ -1579,12 +1724,12 @@ a[href*="instagram.com"]:hover {
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(99,166,74,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(94, 206, 94, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
-   Showcase Grid (can add more cards later)
+   Showcase Grid
    -------------------------------------------------------------------------- */
 .showcase-grid {
   display: grid;
@@ -1606,11 +1751,12 @@ a[href*="instagram.com"]:hover {
   grid-template-columns: 1.1fr 1fr;
   gap: 0;
   transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .showcase-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-green-glow);
+  transform: translateY(-5px);
 }
 
 /* --------------------------------------------------------------------------
@@ -1636,12 +1782,12 @@ a[href*="instagram.com"]:hover {
   transform: scale(1.04);
 }
 
-/* Overlay that appears on hover with CTA */
+/* Overlay on hover with CTA */
 .showcase-img-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(22, 79, 61, 0.72);
-  backdrop-filter: blur(3px);
+  background: rgba(10, 26, 20, 0.8);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1692,9 +1838,10 @@ a[href*="instagram.com"]:hover {
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--color-leaf-green);
-  background: rgba(99, 166, 74, 0.12);
+  background: var(--color-leaf-green-dim);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-full);
+  border: 1px solid rgba(94, 206, 94, 0.15);
 }
 
 .showcase-year {
@@ -1708,7 +1855,7 @@ a[href*="instagram.com"]:hover {
   font-family: var(--font-display);
   font-size: 1.85rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--text-light);
   line-height: 1.15;
   margin: 0;
 }
@@ -1733,17 +1880,18 @@ a[href*="instagram.com"]:hover {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--color-forest-green);
-  background: rgba(22, 79, 61, 0.08);
-  border: 1px solid rgba(22, 79, 61, 0.15);
-  padding: 0.22rem 0.65rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.7rem;
   border-radius: var(--radius-full);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .showcase-tag:hover {
-  background: var(--color-forest-green);
-  color: #fff;
+  background: var(--color-leaf-green);
+  color: #0A1A14;
+  border-color: var(--color-leaf-green);
 }
 
 /* --------------------------------------------------------------------------
@@ -1795,7 +1943,7 @@ a[href*="instagram.com"]:hover {
 
   .showcase-img-overlay {
     opacity: 1;
-    background: rgba(22, 79, 61, 0.45);
+    background: rgba(10, 26, 20, 0.55);
   }
 
   .showcase-live-btn {
@@ -1829,4 +1977,38 @@ a[href*="instagram.com"]:hover {
     text-align: center;
     justify-content: center;
   }
+}
+
+/* --------------------------------------------------------------------------
+   16. Scrollbar Styling (Dark Theme)
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dominant);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(94, 206, 94, 0.2);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 206, 94, 0.35);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(94, 206, 94, 0.2) var(--bg-dominant);
+}
+
+/* --------------------------------------------------------------------------
+   17. Selection Styling
+   -------------------------------------------------------------------------- */
+::selection {
+  background: rgba(232, 135, 60, 0.3);
+  color: var(--text-light);
 }
