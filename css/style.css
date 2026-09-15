@@ -1584,7 +1584,7 @@ a[href*="instagram.com"]:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Showcase Grid (can add more cards later)
+   Showcase Grid
    -------------------------------------------------------------------------- */
 .showcase-grid {
   display: grid;
@@ -1636,7 +1636,6 @@ a[href*="instagram.com"]:hover {
   transform: scale(1.04);
 }
 
-/* Overlay that appears on hover with CTA */
 .showcase-img-overlay {
   position: absolute;
   inset: 0;
@@ -1678,7 +1677,6 @@ a[href*="instagram.com"]:hover {
   gap: 1.1rem;
 }
 
-/* Meta row */
 .showcase-meta {
   display: flex;
   align-items: center;
@@ -1703,7 +1701,6 @@ a[href*="instagram.com"]:hover {
   color: var(--text-muted);
 }
 
-/* Title & description */
 .showcase-title {
   font-family: var(--font-display);
   font-size: 1.85rem;
@@ -1779,6 +1776,19 @@ a[href*="instagram.com"]:hover {
   font-size: 1.1rem;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Projects Page Hero
+   -------------------------------------------------------------------------- */
+.projects-hero-section {
+  padding: 4.5rem 0 3rem 0;
+  text-align: center;
+}
+
+.projects-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* --------------------------------------------------------------------------
