@@ -1556,3 +1556,277 @@ a[href*="instagram.com"]:hover {
   transform: translateY(-1px);
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   SHOWCASE SECTION – OUR WORK
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Section Wrapper
+   -------------------------------------------------------------------------- */
+.showcase-section {
+  padding: var(--section-padding-desktop);
+  background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-dominant) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,166,74,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Showcase Grid (can add more cards later)
+   -------------------------------------------------------------------------- */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Showcase Card
+   -------------------------------------------------------------------------- */
+.showcase-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.showcase-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   Image Side
+   -------------------------------------------------------------------------- */
+.showcase-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  background: var(--bg-soft);
+}
+
+.showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-card:hover .showcase-img {
+  transform: scale(1.04);
+}
+
+/* Overlay that appears on hover with CTA */
+.showcase-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 79, 61, 0.72);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.showcase-card:hover .showcase-img-overlay {
+  opacity: 1;
+}
+
+.showcase-live-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(12px);
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+  opacity: 0;
+}
+
+.showcase-card:hover .showcase-live-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Info Side
+   -------------------------------------------------------------------------- */
+.showcase-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+/* Meta row */
+.showcase-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.showcase-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-leaf-green);
+  background: rgba(99, 166, 74, 0.12);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.showcase-year {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Title & description */
+.showcase-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.showcase-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Tech Tags
+   -------------------------------------------------------------------------- */
+.showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.showcase-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-forest-green);
+  background: rgba(22, 79, 61, 0.08);
+  border: 1px solid rgba(22, 79, 61, 0.15);
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.showcase-tag:hover {
+  background: var(--color-forest-green);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Action Buttons
+   -------------------------------------------------------------------------- */
+.showcase-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.showcase-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Bottom CTA
+   -------------------------------------------------------------------------- */
+.showcase-cta {
+  margin-top: 3.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.showcase-cta p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive – Tablet
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .showcase-card {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-img-wrapper {
+    min-height: 240px;
+  }
+
+  .showcase-img-overlay {
+    opacity: 1;
+    background: rgba(22, 79, 61, 0.45);
+  }
+
+  .showcase-live-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive – Mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .showcase-section {
+    padding: var(--section-padding-mobile);
+  }
+
+  .showcase-info {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .showcase-title {
+    font-size: 1.45rem;
+  }
+
+  .showcase-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .showcase-actions .btn {
+    text-align: center;
+    justify-content: center;
+  }
+}
