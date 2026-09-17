@@ -80,38 +80,41 @@ function initMobileNavigation() {
    3. Active Navigation Link Highlighting
    -------------------------------------------------------------------------- */
 function initActiveNavLink() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const rawPath = window.location.pathname.toLowerCase();
   const navLinks = document.querySelectorAll('.nav-link');
 
-  navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (!linkHref) return;
+  // Determine current page key based on URL path
+  let pageKey = 'index.html';
+  if (rawPath.includes('projects')) {
+    pageKey = 'projects.html';
+  } else if (rawPath.includes('services')) {
+    pageKey = 'services.html';
+  } else if (rawPath.includes('about')) {
+    pageKey = 'about.html';
+  } else if (rawPath.endsWith('/') || rawPath.includes('index') || rawPath === '') {
+    pageKey = 'index.html';
+  }
 
-    if (linkHref === currentPath || (currentPath === '' && linkHref === 'index.html')) {
+  navLinks.forEach(link => {
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    
+    let isMatch = false;
+    if (pageKey === 'index.html' && (href === 'index.html' || href === '/' || href === '' || href.startsWith('#'))) {
+      isMatch = true;
+    } else if (pageKey === 'projects.html' && href.includes('projects')) {
+      isMatch = true;
+    } else if (pageKey === 'services.html' && href.includes('services')) {
+      isMatch = true;
+    } else if (pageKey === 'about.html' && href.includes('about')) {
+      isMatch = true;
+    }
+
+    if (isMatch) {
       link.classList.add('active');
-    } else if (linkHref.startsWith('#') && (currentPath === 'index.html' || currentPath === '')) {
-      // Intersection Observer for in-page anchors on homepage
-      setupAnchorObserver(link, linkHref);
     } else {
       link.classList.remove('active');
     }
   });
-}
-
-function setupAnchorObserver(link, anchorId) {
-  const targetSection = document.querySelector(anchorId);
-  if (!targetSection) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(targetSection);
 }
 
 /* --------------------------------------------------------------------------
