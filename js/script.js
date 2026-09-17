@@ -1,15 +1,10 @@
-/**
- * DryLeaf Technologies - Main JavaScript File
- * Handles Navbar scroll, mobile navigation drawer, scroll reveal, 
- * interactive service detail modals, and inquiry dialogs.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all interactive components
   initStickyHeader();
   initMobileNavigation();
   initActiveNavLink();
   initScrollReveal();
+  initMobileServiceTabs();
   initServiceModals();
   initGetStartedModal();
   initBackToTop();
@@ -60,6 +55,8 @@ function initMobileNavigation() {
     toggleBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
+
+  window.closeMobileNavigation = closeMenu;
 
   toggleBtn.addEventListener('click', () => {
     const isOpen = navMenu.classList.contains('active');
@@ -140,7 +137,34 @@ function initScrollReveal() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Interactive Service Detail Modal System
+   5. Interactive Mobile Category Tabs & Filter System
+   -------------------------------------------------------------------------- */
+function initMobileServiceTabs() {
+  const tabs = document.querySelectorAll('.service-tab');
+  const serviceCards = document.querySelectorAll('.service-card');
+  if (!tabs.length || !serviceCards.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const selectedCategory = tab.getAttribute('data-tab');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      serviceCards.forEach(card => {
+        const cardServiceId = card.getAttribute('data-service-id');
+        if (selectedCategory === 'all' || cardServiceId === selectedCategory) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   6. Interactive Service Detail Modal System & Mobile Accordion
    -------------------------------------------------------------------------- */
 const serviceData = {
   'web-dev': {
@@ -197,6 +221,7 @@ function initServiceModals() {
   const modalOverlay = document.getElementById('service-modal');
   if (!modalOverlay) return;
 
+  const modalContainer = modalOverlay.querySelector('.modal-container');
   const modalTitle = modalOverlay.querySelector('.modal-service-title');
   const modalSubtitle = modalOverlay.querySelector('.modal-service-subtitle');
   const modalDesc = modalOverlay.querySelector('.modal-service-desc');
@@ -206,6 +231,10 @@ function initServiceModals() {
   const openServiceModal = (serviceId) => {
     const data = serviceData[serviceId];
     if (!data) return;
+
+    if (window.closeMobileNavigation) {
+      window.closeMobileNavigation();
+    }
 
     modalTitle.textContent = data.title;
     modalSubtitle.textContent = data.subtitle;
@@ -221,6 +250,10 @@ function initServiceModals() {
         </div>
       `).join('');
 
+    if (modalContainer) {
+      modalContainer.scrollTop = 0;
+    }
+
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -230,9 +263,9 @@ function initServiceModals() {
     document.body.style.overflow = '';
   };
 
-  // Bind click triggers on service cards
-  document.querySelectorAll('[data-service-id]').forEach(card => {
-    card.addEventListener('click', (e) => {
+  // Service Cards Click Trigger
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
       const serviceId = card.getAttribute('data-service-id');
       openServiceModal(serviceId);
     });
@@ -248,17 +281,10 @@ function initServiceModals() {
       closeServiceModal();
     }
   });
-
-  // Delegate "Get Started with this Service" button inside modal
-  const modalCta = modalOverlay.querySelector('.modal-cta-btn');
-  modalCta?.addEventListener('click', () => {
-    closeServiceModal();
-    openGetStartedModal();
-  });
 }
 
 /* --------------------------------------------------------------------------
-   6. "Get Started" Project Inquiry Modal Dialog
+   7. "Get Started" Project Inquiry Modal Dialog
    -------------------------------------------------------------------------- */
 function initGetStartedModal() {
   const getStartedModal = document.getElementById('contact-modal');
@@ -267,8 +293,20 @@ function initGetStartedModal() {
   const closeBtn = getStartedModal.querySelector('.modal-close-btn');
   const contactForm = getStartedModal.querySelector('#project-inquiry-form');
   const successMsg = getStartedModal.querySelector('.form-success-msg');
+  const serviceSelect = getStartedModal.querySelector('#project-type');
 
-  window.openGetStartedModal = () => {
+  const modalContainer = getStartedModal.querySelector('.modal-container');
+
+  window.openGetStartedModal = (preselectedService = null) => {
+    if (window.closeMobileNavigation) {
+      window.closeMobileNavigation();
+    }
+    if (preselectedService && serviceSelect) {
+      serviceSelect.value = preselectedService;
+    }
+    if (modalContainer) {
+      modalContainer.scrollTop = 0;
+    }
     getStartedModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -307,7 +345,6 @@ function initGetStartedModal() {
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Simulate accessible form submission
       contactForm.style.display = 'none';
       if (successMsg) {
         successMsg.style.display = 'block';
@@ -320,7 +357,7 @@ function initGetStartedModal() {
 }
 
 /* --------------------------------------------------------------------------
-   7. Back-to-Top Button Handler
+   8. Back-to-Top Button Handler
    -------------------------------------------------------------------------- */
 function initBackToTop() {
   const backToTopBtn = document.querySelector('.back-to-top');
@@ -334,3 +371,4 @@ function initBackToTop() {
     });
   });
 }
+

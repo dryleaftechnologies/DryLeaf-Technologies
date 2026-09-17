@@ -117,7 +117,16 @@
           <p>Digital solutions designed to help businesses move forward.</p>
         </div>
 
-        <!-- 6 Interactive Service Cards Grid -->
+        <!-- Interactive Mobile Category Filter Tabs -->
+        <div class="mobile-service-tabs reveal">
+          <button class="service-tab active" data-tab="all" aria-label="Filter all services">All</button>
+          <button class="service-tab" data-tab="web-dev" aria-label="Filter Web Development">Web Dev</button>
+          <button class="service-tab" data-tab="ecommerce" aria-label="Filter E-Commerce">E-Commerce</button>
+          <button class="service-tab" data-tab="web-apps" aria-label="Filter Custom Web Apps">Web Apps</button>
+          <button class="service-tab" data-tab="ui-ux" aria-label="Filter UI UX Design">UI/UX</button>
+        </div>
+
+        <!-- 4 Interactive Service Cards Grid -->
         <div class="services-grid">
           <!-- Card 1: Web Development -->
           <div class="service-card reveal" data-service-id="web-dev">
@@ -202,8 +211,8 @@
           <h4 class="footer-title">Navigation</h4>
           <div class="footer-links">
             <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
             <a href="projects.html">Our Projects</a>
+            <a href="services.html">Services</a>
             <a href="about.html">About Us</a>
           </div>
         </div>
@@ -237,6 +246,7 @@
        ========================================== -->
   <div class="modal-overlay" id="service-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-container">
+      <div class="mobile-drag-handle" aria-hidden="true"></div>
       <button class="modal-close-btn" aria-label="Close modal window">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>

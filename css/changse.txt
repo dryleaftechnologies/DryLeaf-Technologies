@@ -1,0 +1,54 @@
+# About Us | DryLeaf Technologies | www.dryleaftechnologies.com
+
+- [HOME](http://localhost:8000/index.html)
+- [SERVICES](http://localhost:8000/services.html)
+- [ABOUT US](http://localhost:8000/about.html)
+[HOME](http://localhost:8000/index.html)
+[SERVICES](http://localhost:8000/services.html)
+[ABOUT US](http://localhost:8000/about.html)
+
+# Technology With Creativity. Built For Growth.
+DryLeaf Technologies is dedicated to creating modern digital experiences and practical technology solutions. We believe that technology should be intuitive, aesthetically refined, and engineered around real human needs.
+
+### OUR MISSION
+To create meaningful digital solutions that combine technology, creativity and usability to help businesses establish a stronger digital presence.
+
+### OUR VISION
+To grow as a trusted technology partner known for creating simple, modern and impactful digital experiences.
+
+## Our Core Values
+The foundational principles that guide every solution we design and code.
+
+### CREATIVITY
+Innovative visual design and fresh ideas that give digital solutions distinct character.
+
+### QUALITY
+Uncompromised engineering standards, fast performance, and clean code principles.
+
+### SIMPLICITY
+Removing friction and clutter to deliver clear, intuitive interfaces that users love.
+
+### GROWTH
+Designing digital tools built for long-term scalability and business progress.
+
+## Based in Coimbatore
+DryLeaf Technologies operates from Coimbatore, Tamil Nadu, delivering modern digital experiences and web engineering solutions.
+[dryleaftechnologies@gmail.com](mailto:dryleaftechnologies@gmail.com)
+[+91 79044 52267](tel:7904452267)
+[+91 94862 88948](tel:9486288948)
+[@dryleaf_technologies](https://www.instagram.com/dryleaf_technologies?stkn=ZWhzNjkzNGU2aHZu)
+Turning ideas into digital experiences with modern web solutions and clean design.
+
+#### Navigation
+[Home](http://localhost:8000/index.html)
+[Services](http://localhost:8000/services.html)
+[About Us](http://localhost:8000/about.html)
+
+#### Contact & Location
+[dryleaftechnologies@gmail.com](mailto:dryleaftechnologies@gmail.com)
+[📞 +91 79044 52267](tel:7904452267)
+[📞 +91 94862 88948](tel:9486288948)
+[Instagram](https://www.instagram.com/dryleaf_technologies?stkn=ZWhzNjkzNGU2aHZu)
+
+### Let's Build Something Great
+Tell us about your project vision or reach us directly at [dryleaftechnologies@gmail.com](mailto:dryleaftechnologies@gmail.com)
