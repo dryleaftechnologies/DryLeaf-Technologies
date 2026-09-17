@@ -69,6 +69,9 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -76,6 +79,8 @@ body {
   background-color: var(--bg-dominant);
   color: var(--text-dark);
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
@@ -1188,11 +1193,22 @@ textarea:focus-visible {
 /* --------------------------------------------------------------------------
    13. Modals & Interactive Overlays
    -------------------------------------------------------------------------- */
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  max-width: 100vw !important;
+  touch-action: none;
+}
+
 .modal-overlay {
   position: fixed;
+  inset: 0;
   top: 0;
   left: 0;
-  width: 100vw;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100vw;
   height: 100vh;
   height: 100dvh;
   background-color: rgba(10, 30, 23, 0.85);
@@ -1206,12 +1222,14 @@ textarea:focus-visible {
   box-sizing: border-box;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .modal-container {
@@ -1219,15 +1237,17 @@ textarea:focus-visible {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   max-width: 580px;
-  width: calc(100% - 1rem);
+  width: min(580px, calc(100% - 1.5rem));
   max-height: 82vh;
   max-height: 82dvh;
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 2.25rem 2rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   transform: scale(0.95);
   opacity: 0;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
@@ -1482,10 +1502,11 @@ textarea:focus-visible {
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 80%;
     max-width: 320px;
     height: 100vh;
+    height: 100dvh;
     background-color: var(--bg-card);
     flex-direction: column;
     align-items: flex-start;
@@ -1494,11 +1515,16 @@ textarea:focus-visible {
     gap: 1.75rem;
     z-index: 999;
     box-shadow: var(--shadow-lg);
-    transition: right var(--transition-smooth);
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform var(--transition-smooth), visibility var(--transition-smooth);
   }
 
   .nav-menu.active {
-    right: 0;
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-link {
@@ -1653,9 +1679,13 @@ textarea:focus-visible {
   /* Mobile Centered Modal Popup Styling */
   .modal-overlay {
     position: fixed;
+    inset: 0;
     top: 0;
     left: 0;
-    width: 100vw;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100vw;
     height: 100vh;
     height: 100dvh;
     display: flex;
@@ -1666,12 +1696,12 @@ textarea:focus-visible {
   }
 
   .modal-container {
-    width: calc(100vw - 2rem);
+    width: min(480px, calc(100% - 1.25rem));
     max-width: 480px;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 20px;
-    max-height: 78vh;
-    max-height: 78dvh;
+    max-height: 80vh;
+    max-height: 80dvh;
     padding: 1.5rem 1.25rem;
     transform: scale(0.95);
     opacity: 0;
@@ -1681,6 +1711,8 @@ textarea:focus-visible {
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-overlay.active .modal-container {

@@ -232,7 +232,8 @@ function initServiceModals() {
     const data = serviceData[serviceId];
     if (!data) return;
 
-    if (window.closeMobileNavigation) {
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu && navMenu.classList.contains('active') && window.closeMobileNavigation) {
       window.closeMobileNavigation();
     }
 
@@ -255,17 +256,22 @@ function initServiceModals() {
     }
 
     modalOverlay.classList.add('active');
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   };
 
   const closeServiceModal = () => {
     modalOverlay.classList.remove('active');
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   };
 
   // Service Cards Click Trigger
   document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
       const serviceId = card.getAttribute('data-service-id');
       openServiceModal(serviceId);
     });
@@ -275,6 +281,12 @@ function initServiceModals() {
   modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) closeServiceModal();
   });
+
+  modalOverlay.addEventListener('touchmove', (e) => {
+    if (e.target === modalOverlay) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
@@ -298,7 +310,8 @@ function initGetStartedModal() {
   const modalContainer = getStartedModal.querySelector('.modal-container');
 
   window.openGetStartedModal = (preselectedService = null) => {
-    if (window.closeMobileNavigation) {
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu && navMenu.classList.contains('active') && window.closeMobileNavigation) {
       window.closeMobileNavigation();
     }
     if (preselectedService && serviceSelect) {
@@ -308,11 +321,15 @@ function initGetStartedModal() {
       modalContainer.scrollTop = 0;
     }
     getStartedModal.classList.add('active');
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   };
 
   const closeGetStartedModal = () => {
     getStartedModal.classList.remove('active');
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     if (contactForm) {
       contactForm.reset();
@@ -335,6 +352,12 @@ function initGetStartedModal() {
   getStartedModal.addEventListener('click', (e) => {
     if (e.target === getStartedModal) closeGetStartedModal();
   });
+
+  getStartedModal.addEventListener('touchmove', (e) => {
+    if (e.target === getStartedModal) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && getStartedModal.classList.contains('active')) {
